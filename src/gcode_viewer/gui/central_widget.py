@@ -14,11 +14,12 @@ class Central_Widget(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.file_handler = File_Handler()
+        self.settings = self.file_handler.read_settings()
+
         self.initUI()
 
     def initUI(self):
-        self.file_handler = File_Handler()
-        self.settings = self.file_handler.read_settings()
 
         self.grid = QGridLayout()
 
@@ -29,7 +30,7 @@ class Central_Widget(QWidget):
         self.left_side = Left_Side()
         self.grid.addWidget(self.left_side, 1, 0)
 
-        self.right_side = Right_Side()
+        self.right_side = Right_Side(self.settings)
         self.grid.addWidget(self.right_side, 1, 1)
 
         bottom_grid = QGridLayout()

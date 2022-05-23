@@ -40,37 +40,37 @@ class GCode_3D_Viewer(QWidget):
     def load_gcode(self, layer_list):
 
         vertexes_list = []
-        edges_list = []
+        faces_list = []
+        edge_color_list= []
+
         first = True
         not_skip = True
 
         for layer in layer_list:
-            for x_data, y_data, z_data in zip(layer.x_data, layer.y_data, layer.z_data):
+            for x_data, y_data, z_data, color_data in zip(layer.x_data, layer.y_data, layer.z_data, layer.pyqtgraph_color):
                 for vertex in zip(x_data, y_data, z_data):
                     if first:
                         first = False
                         vertexes_list.append(vertex)
+                        edge_color_list.append(color_data)
                     elif not_skip:
                         not_skip = False
                         vertexes_list.append(vertex)
+                        edge_color_list.append(color_data)
                     else:
                         not_skip = True
 
         from_index = 0
         end = len(vertexes_list)
         for to_index in range(1, end):
-            edges_list.append((from_index, to_index, from_index))
+            faces_list.append((from_index, to_index, from_index))
             from_index = to_index
 
         vertexes_array = np.array(vertexes_list)
-        edges_array = np.array(edges_list)
+        faces_array = np.array(faces_list)
+        edge_color_array = np.array(edge_color_list[1:])
 
-        meshdata = gl.MeshData(vertexes=vertexes_array, faces=edges_array)
-        mesh = gl.GLMeshItem(meshdata=meshdata, smooth=True, drawFaces=False, drawEdges=True, edgeColor=(0, 1, 0, 1))
+        meshdata = gl.MeshData(vertexes=vertexes_array, faces=faces_array)
+        meshdata.setEdgeColors(edge_color_array)
+        mesh = gl.GLMeshItem(meshdata=meshdata, drawFaces=True, drawEdges=True)
         self.viewer.addItem(mesh)
-
-        # m = mesh.Mesh.from_file(filename)
-        # shape = m.points.shape
-        # points = m.points.reshape(-1, 3)
-        # faces = np.arange(points.shape[0]).reshape(-1, 3)
-        # return points, faces
