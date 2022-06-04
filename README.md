@@ -2,9 +2,10 @@
 
 --------------------------------------------------------------------------------
 [![MIT-License](https://img.shields.io/github/license/johanneshagspiel/gcode-viewer)](LICENSE)
+[![Top Language](https://img.shields.io/github/languages/top/johanneshagspiel/gcode-viewer)](https://github.com/johanneshagspiel/gcode-viewer)
 [![Latest Release](https://img.shields.io/github/v/release/johanneshagspiel/gcode-viewer)](https://github.com/johanneshagspiel/gcode-viewer/releases/)
 
-# G-Code Modifier
+# G-Code Viewer
 
 "G-Code Modifier" is desktop application created in order to support the 3D printing of sustainable materials via extrusion through a syringe. 
 Such a 3D printing process posses unique problems that either can not be addressed at all with popular 3D printer slicing applications like [Cura](https://ultimaker.com/software/ultimaker-cura) or only in a very cumbersome manner.
