@@ -1,1 +1,0 @@
-pyinstaller gcode_viewer/main.py --distpath "pyinstaller/dist" --workpath "pyinstaller/build"  --noconsole --add-data "gcode_viewer/resources/icons/*;gcode_viewer/resources/icons" --add-data "gcode_viewer/resources/fonts/*;gcode_viewer/resources/fonts" --add-data "gcode_viewer/resources/settings/*;gcode_viewer/resources/settings"

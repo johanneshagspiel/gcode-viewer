@@ -1,0 +1,4 @@
+main.spec
+/src/pyinstaller/build
+/dist
+.idea
